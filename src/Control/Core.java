@@ -19,13 +19,14 @@ public class Core {
     }
     
     public void iniciarProceso(){
+        System.out.println("Creo proceso");
         carga += 10;
-        temperatura += 20;
+        temperatura += 10;
     }
     
     public void removerProceso(){
         carga -= 10;
-        temperatura -= 20;
+        temperatura -= 10;
     }
 
     public int getCarga() {

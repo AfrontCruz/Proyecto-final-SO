@@ -1,6 +1,7 @@
 
 package Vista;
 
+import Control.AdministradorDeProcesos;
 import Control.Core;
 import java.util.LinkedList;
 import javax.swing.JFrame;
@@ -22,10 +23,7 @@ public class PrincipalScreen extends javax.swing.JFrame {
         process = new LinkedList<JFrame>();
         procesos = 0;
         createTableProcesos();
-        cores = new Core[4];
-        for( int i = 0; i < 4; i++ ){
-            cores[i] = new Core();
-        }
+        adm = new AdministradorDeProcesos( 4 );
     }
 
     @SuppressWarnings("unchecked")
@@ -43,6 +41,7 @@ public class PrincipalScreen extends javax.swing.JFrame {
         notifyBar1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaProcesos = new javax.swing.JTable();
+        botonVerCores = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -166,21 +165,35 @@ public class PrincipalScreen extends javax.swing.JFrame {
         tablaProcesos.setGridColor(new java.awt.Color(0, 102, 102));
         jScrollPane1.setViewportView(tablaProcesos);
 
+        botonVerCores.setBackground(new java.awt.Color(0, 0, 0));
+        botonVerCores.setFont(new java.awt.Font("URW Gothic L", 1, 14)); // NOI18N
+        botonVerCores.setForeground(new java.awt.Color(255, 255, 255));
+        botonVerCores.setText("Ver Cores");
+        botonVerCores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonVerCoresActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout notifyBar1Layout = new javax.swing.GroupLayout(notifyBar1);
         notifyBar1.setLayout(notifyBar1Layout);
         notifyBar1Layout.setHorizontalGroup(
             notifyBar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(notifyBar1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(notifyBar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(botonVerCores, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         notifyBar1Layout.setVerticalGroup(
             notifyBar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(notifyBar1Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(212, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(botonVerCores)
+                .addGap(15, 15, 15))
         );
 
         javax.swing.GroupLayout ScreenPrincipalLayout = new javax.swing.GroupLayout(ScreenPrincipal);
@@ -214,16 +227,16 @@ public class PrincipalScreen extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(botonPower)
                 .addGap(140, 140, 140)
+                .addComponent(botonNavigator)
                 .addGroup(ScreenPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(ScreenPrincipalLayout.createSequentialGroup()
-                        .addComponent(botonNavigator)
                         .addGap(38, 38, 38)
                         .addComponent(botonCalculator)
-                        .addGap(0, 158, Short.MAX_VALUE))
+                        .addGap(18, 176, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ScreenPrincipalLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(notifyBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(notifyBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)))
                 .addComponent(notifyBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addGroup(ScreenPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -245,25 +258,28 @@ public class PrincipalScreen extends javax.swing.JFrame {
         this.removeNotify();
     }//GEN-LAST:event_botonPowerActionPerformed
 
+    /* CREAR UN NUEVO NAVEGADOR */
     private void botonNavigatorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonNavigatorActionPerformed
         procesos++;
         String title = "Navigator " + Integer.toString(procesos);
-        int core = getProcesador();
+        int core = adm.getProcesador();
         process.add( new Browser( title, procesos, this, core) );
         boxProcess.addItem( title );
         añadirProcesoTabla(procesos, title, core);
         
     }//GEN-LAST:event_botonNavigatorActionPerformed
 
+    /*CREAR UNA NUEVA TERMINAL*/
     private void botonTerminalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonTerminalActionPerformed
         procesos++;
         String title = "Terminal " + Integer.toString(procesos);
-        int core = getProcesador();
+        int core = adm.getProcesador();
         process.add( new Terminal(this, title, procesos, core) );
         boxProcess.addItem( title );
         añadirProcesoTabla(procesos, title, core);
     }//GEN-LAST:event_botonTerminalActionPerformed
 
+    /*MAXIMIZA UN Jframe*/
     private void botonMaximizedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonMaximizedActionPerformed
         for( JFrame t : process){
             if ( t.getTitle().equals( boxProcess.getSelectedItem() ) ){
@@ -273,15 +289,22 @@ public class PrincipalScreen extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_botonMaximizedActionPerformed
 
+    /*CREA UNA NUEVA CALCULADORA*/
     private void botonCalculatorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCalculatorActionPerformed
         procesos++;
         String title = "Calculadora " + Integer.toString(procesos);
-        int core = getProcesador();
+        int core = adm.getProcesador();
         process.add( new Calculadora(this, title, procesos, core) );
         boxProcess.addItem(title);
-        añadirProcesoTabla(procesos, title, 0);
+        añadirProcesoTabla(procesos, title, core);
     }//GEN-LAST:event_botonCalculatorActionPerformed
 
+    /*ABRE UNA VISTA DE CORES*/
+    private void botonVerCoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVerCoresActionPerformed
+        Procesadores p = new Procesadores( adm );
+    }//GEN-LAST:event_botonVerCoresActionPerformed
+
+    /*REMUEVE UN PROCESO*/
     public void removeProcess(int process, JFrame exit, int core){
         for(int i = 0; true; i++){
             if( boxProcess.getItemAt(i).contains( Integer.toString( process ) ) ){
@@ -293,19 +316,20 @@ public class PrincipalScreen extends javax.swing.JFrame {
         if( this.process.remove( exit ) ){
             System.out.println("Se eliminó");
         }
-        
-        cores[core].removerProceso();
+        adm.removerProceso( core );
     }
     
     public boolean isOn(){
         return on;
     }
     
+    /*AGREGA EL PROCESO A LA TABLA*/
     public void añadirProcesoTabla(int id, String title, int core){
         Object obj[] = {id, title, core};
         modeloProcesos.addRow( obj );
     }
     
+    /*REMUEVE UN PROCESO DE LA TABLA*/
     public void removerProcesoTabla(int id){
         int i;
         for( i = 0; i < modeloProcesos.getRowCount(); i++ ){
@@ -328,36 +352,11 @@ public class PrincipalScreen extends javax.swing.JFrame {
         resizeColumn( tablaProcesos.getColumn("Core"), 40, 40 );
     }
     
+    /**/
     public void resizeColumn( TableColumn columna, int max, int min ){
         columna.setResizable(false);
         columna.setMaxWidth(max);
         columna.setMinWidth(min);
-    }
-    
-    //Procesador
-    public int getProcesador(){
-        for(int i = 0; i < 4; i++){
-            if( cores[i].getCarga() < 20){
-                if( cores[i].getTemperatura() < 40  ){
-                    cores[i].iniciarProceso();
-                    return i + 1;
-                }
-            }
-            else if( cores[i].getCarga() < 40 ){
-                if( cores[i].getTemperatura() < 80 ){
-                    cores[i].iniciarProceso();
-                    return i + 1;
-                }
-            }
-            else if( cores[i].getCarga() < 60 ){
-                if( cores[i].getTemperatura() < 100 ){
-                    cores[i].iniciarProceso();
-                    return i + 1;
-                }
-            }    
-        }
-        System.out.println("Salí");
-        return 0;
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -367,6 +366,7 @@ public class PrincipalScreen extends javax.swing.JFrame {
     private javax.swing.JButton botonNavigator;
     private javax.swing.JButton botonPower;
     private javax.swing.JButton botonTerminal;
+    private javax.swing.JButton botonVerCores;
     private javax.swing.JComboBox<String> boxProcess;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel notifyBar;
@@ -377,5 +377,5 @@ public class PrincipalScreen extends javax.swing.JFrame {
     private LinkedList <JFrame> process;
     private int procesos;
     private DefaultTableModel modeloProcesos;
-    private Core cores[];
+    private AdministradorDeProcesos adm;
 }
