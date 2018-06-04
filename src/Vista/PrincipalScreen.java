@@ -39,15 +39,16 @@ public class PrincipalScreen extends javax.swing.JFrame {
         botonMaximized = new javax.swing.JButton();
         botonCalculator = new javax.swing.JButton();
         notifyBar1 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        scrollTablaProcesos = new javax.swing.JScrollPane();
         tablaProcesos = new javax.swing.JTable();
         botonVerCores = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
-        getContentPane().setLayout(null);
 
         ScreenPrincipal.setBackground(new java.awt.Color(255, 255, 255));
+        ScreenPrincipal.setLayout(null);
 
         botonPower.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/shutdown.png"))); // NOI18N
         botonPower.setBorder(null);
@@ -63,7 +64,11 @@ public class PrincipalScreen extends javax.swing.JFrame {
                 botonPowerActionPerformed(evt);
             }
         });
+        ScreenPrincipal.add(botonPower);
+        botonPower.setBounds(1300, 20, 49, 49);
 
+        botonNavigator.setFont(new java.awt.Font("Arial Narrow", 1, 18)); // NOI18N
+        botonNavigator.setForeground(new java.awt.Color(255, 255, 255));
         botonNavigator.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/navigator.png"))); // NOI18N
         botonNavigator.setText("Navigator");
         botonNavigator.setBorder(null);
@@ -79,7 +84,12 @@ public class PrincipalScreen extends javax.swing.JFrame {
                 botonNavigatorActionPerformed(evt);
             }
         });
+        ScreenPrincipal.add(botonNavigator);
+        botonNavigator.setBounds(51, 200, 97, 115);
 
+        botonTerminal.setBackground(new java.awt.Color(255, 255, 255));
+        botonTerminal.setFont(new java.awt.Font("Arial Narrow", 1, 18)); // NOI18N
+        botonTerminal.setForeground(new java.awt.Color(255, 255, 255));
         botonTerminal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/terminal.png"))); // NOI18N
         botonTerminal.setText("Terminal");
         botonTerminal.setBorder(null);
@@ -95,12 +105,16 @@ public class PrincipalScreen extends javax.swing.JFrame {
                 botonTerminalActionPerformed(evt);
             }
         });
+        ScreenPrincipal.add(botonTerminal);
+        botonTerminal.setBounds(51, 66, 97, 115);
 
-        notifyBar.setBackground(new java.awt.Color(255, 0, 0));
+        notifyBar.setBackground(new java.awt.Color(255, 51, 51));
 
+        boxProcess.setBackground(new java.awt.Color(255, 51, 51));
         boxProcess.setFont(new java.awt.Font("URW Gothic L", 1, 12)); // NOI18N
+        boxProcess.setForeground(new java.awt.Color(255, 255, 255));
 
-        botonMaximized.setBackground(new java.awt.Color(0, 0, 0));
+        botonMaximized.setBackground(new java.awt.Color(255, 51, 51));
         botonMaximized.setFont(new java.awt.Font("URW Gothic L", 1, 14)); // NOI18N
         botonMaximized.setForeground(new java.awt.Color(255, 255, 255));
         botonMaximized.setText("M a x i m i z e d");
@@ -114,23 +128,28 @@ public class PrincipalScreen extends javax.swing.JFrame {
         notifyBar.setLayout(notifyBarLayout);
         notifyBarLayout.setHorizontalGroup(
             notifyBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(notifyBarLayout.createSequentialGroup()
-                .addGap(14, 14, 14)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, notifyBarLayout.createSequentialGroup()
+                .addContainerGap(26, Short.MAX_VALUE)
                 .addGroup(notifyBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(botonMaximized, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botonMaximized, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
                     .addComponent(boxProcess, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(253, Short.MAX_VALUE))
+                .addGap(31, 31, 31))
         );
         notifyBarLayout.setVerticalGroup(
             notifyBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(notifyBarLayout.createSequentialGroup()
-                .addGap(16, 16, 16)
+                .addGap(18, 18, 18)
                 .addComponent(boxProcess, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(botonMaximized)
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
+        ScreenPrincipal.add(notifyBar);
+        notifyBar.setBounds(1140, 634, 220, 105);
+
+        botonCalculator.setFont(new java.awt.Font("Arial Narrow", 1, 18)); // NOI18N
+        botonCalculator.setForeground(new java.awt.Color(255, 255, 255));
         botonCalculator.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/calculator.png"))); // NOI18N
         botonCalculator.setText("Calculator");
         botonCalculator.setBorder(null);
@@ -146,13 +165,17 @@ public class PrincipalScreen extends javax.swing.JFrame {
                 botonCalculatorActionPerformed(evt);
             }
         });
+        ScreenPrincipal.add(botonCalculator);
+        botonCalculator.setBounds(51, 345, 97, 115);
 
         notifyBar1.setBackground(new java.awt.Color(255, 51, 51));
 
-        tablaProcesos.setBackground(new java.awt.Color(255, 255, 255));
-        tablaProcesos.setBorder(javax.swing.BorderFactory.createCompoundBorder());
+        scrollTablaProcesos.setBackground(new java.awt.Color(255, 51, 51));
+        scrollTablaProcesos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 0)));
+
+        tablaProcesos.setBackground(new java.awt.Color(255, 51, 51));
+        tablaProcesos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 51, 51)));
         tablaProcesos.setFont(new java.awt.Font("URW Gothic L", 0, 12)); // NOI18N
-        tablaProcesos.setForeground(new java.awt.Color(0, 0, 0));
         tablaProcesos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -163,9 +186,9 @@ public class PrincipalScreen extends javax.swing.JFrame {
         ));
         tablaProcesos.setEnabled(false);
         tablaProcesos.setGridColor(new java.awt.Color(0, 102, 102));
-        jScrollPane1.setViewportView(tablaProcesos);
+        scrollTablaProcesos.setViewportView(tablaProcesos);
 
-        botonVerCores.setBackground(new java.awt.Color(0, 0, 0));
+        botonVerCores.setBackground(new java.awt.Color(255, 51, 51));
         botonVerCores.setFont(new java.awt.Font("URW Gothic L", 1, 14)); // NOI18N
         botonVerCores.setForeground(new java.awt.Color(255, 255, 255));
         botonVerCores.setText("Ver Cores");
@@ -180,74 +203,42 @@ public class PrincipalScreen extends javax.swing.JFrame {
         notifyBar1Layout.setHorizontalGroup(
             notifyBar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(notifyBar1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(notifyBar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(botonVerCores, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(scrollTablaProcesos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonVerCores, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
         notifyBar1Layout.setVerticalGroup(
             notifyBar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(notifyBar1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(botonVerCores)
-                .addGap(15, 15, 15))
-        );
-
-        javax.swing.GroupLayout ScreenPrincipalLayout = new javax.swing.GroupLayout(ScreenPrincipal);
-        ScreenPrincipal.setLayout(ScreenPrincipalLayout);
-        ScreenPrincipalLayout.setHorizontalGroup(
-            ScreenPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ScreenPrincipalLayout.createSequentialGroup()
-                .addGroup(ScreenPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ScreenPrincipalLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(botonPower))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ScreenPrincipalLayout.createSequentialGroup()
-                        .addGap(51, 51, 51)
-                        .addGroup(ScreenPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(botonCalculator)
-                            .addComponent(botonNavigator))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 811, Short.MAX_VALUE)
-                        .addGroup(ScreenPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(notifyBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(notifyBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap())
-            .addGroup(ScreenPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(ScreenPrincipalLayout.createSequentialGroup()
-                    .addGap(51, 51, 51)
-                    .addComponent(botonTerminal)
-                    .addContainerGap(1223, Short.MAX_VALUE)))
-        );
-        ScreenPrincipalLayout.setVerticalGroup(
-            ScreenPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(ScreenPrincipalLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(botonPower)
-                .addGap(140, 140, 140)
-                .addComponent(botonNavigator)
-                .addGroup(ScreenPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(ScreenPrincipalLayout.createSequentialGroup()
-                        .addGap(38, 38, 38)
-                        .addComponent(botonCalculator)
-                        .addGap(18, 176, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ScreenPrincipalLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(notifyBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)))
-                .addComponent(notifyBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-            .addGroup(ScreenPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(ScreenPrincipalLayout.createSequentialGroup()
-                    .addGap(66, 66, 66)
-                    .addComponent(botonTerminal)
-                    .addContainerGap(566, Short.MAX_VALUE)))
+                .addComponent(scrollTablaProcesos, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(botonVerCores)
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
-        getContentPane().add(ScreenPrincipal);
-        ScreenPrincipal.setBounds(0, 0, 1370, 740);
+        ScreenPrincipal.add(notifyBar1);
+        notifyBar1.setBounds(1140, 427, 220, 189);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/wallpaper.png"))); // NOI18N
+        jLabel1.setText("jLabel1");
+        ScreenPrincipal.add(jLabel1);
+        jLabel1.setBounds(0, -100, 1380, 880);
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(ScreenPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 1370, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(ScreenPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 777, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -368,9 +359,10 @@ public class PrincipalScreen extends javax.swing.JFrame {
     private javax.swing.JButton botonTerminal;
     private javax.swing.JButton botonVerCores;
     private javax.swing.JComboBox<String> boxProcess;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel notifyBar;
     private javax.swing.JPanel notifyBar1;
+    private javax.swing.JScrollPane scrollTablaProcesos;
     private javax.swing.JTable tablaProcesos;
     // End of variables declaration//GEN-END:variables
     private boolean on;

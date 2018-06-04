@@ -2,6 +2,7 @@
 package SistemaOperativo;
 
 import Vista.Browser;
+import Vista.Inicio;
 import Vista.PrincipalScreen;
 
 /**
@@ -11,6 +12,7 @@ import Vista.PrincipalScreen;
 
 public class SistemaOperativo {
     public static void main(String[] args) {
-        PrincipalScreen principal = new PrincipalScreen();
+        Inicio inicio = new Inicio();
+        //PrincipalScreen principal = new PrincipalScreen();
     }
 }
