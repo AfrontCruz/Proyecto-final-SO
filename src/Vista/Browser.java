@@ -24,6 +24,7 @@ public class Browser extends javax.swing.JFrame {
         this.idProceso = idProcesos;
         this.pantalla = pantalla;
         this.procesador = procesador;
+        this.setLocationRelativeTo(null);
     }
 
     @SuppressWarnings("unchecked")

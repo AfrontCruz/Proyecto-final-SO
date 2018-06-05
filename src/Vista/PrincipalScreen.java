@@ -1,8 +1,10 @@
 
 package Vista;
 
+import Control.AdministradorDeMemoria;
 import Control.AdministradorDeProcesos;
 import Control.Core;
+import Control.TableCellRendererColor;
 import java.util.LinkedList;
 import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
@@ -24,6 +26,11 @@ public class PrincipalScreen extends javax.swing.JFrame {
         procesos = 0;
         createTableProcesos();
         adm = new AdministradorDeProcesos( 4 );
+        admMem = new AdministradorDeMemoria( this.tablaRam, this.tablaSwap );
+        admMem.repaintRam();
+        admMem.repaintSwap();
+        panelMemory.setVisible(false);
+        panelCores.setVisible(false);
     }
 
     @SuppressWarnings("unchecked")
@@ -37,17 +44,28 @@ public class PrincipalScreen extends javax.swing.JFrame {
         notifyBar = new javax.swing.JPanel();
         boxProcess = new javax.swing.JComboBox<>();
         botonMaximized = new javax.swing.JButton();
-        botonCalculator = new javax.swing.JButton();
-        notifyBar1 = new javax.swing.JPanel();
+        panelCores = new javax.swing.JPanel();
         scrollTablaProcesos = new javax.swing.JScrollPane();
         tablaProcesos = new javax.swing.JTable();
         botonVerCores = new javax.swing.JButton();
+        botonOkCores = new javax.swing.JButton();
+        panelMemory = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tablaRam = new javax.swing.JTable();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tablaSwap = new javax.swing.JTable();
+        labelRAM = new javax.swing.JLabel();
+        labelSWAP = new javax.swing.JLabel();
+        botonOkMem = new javax.swing.JButton();
+        botonCalculator = new javax.swing.JButton();
+        botonMemory = new javax.swing.JButton();
+        botonProcess = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
 
-        ScreenPrincipal.setBackground(new java.awt.Color(255, 255, 255));
+        ScreenPrincipal.setBackground(new java.awt.Color(0, 51, 102));
         ScreenPrincipal.setLayout(null);
 
         botonPower.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/shutdown.png"))); // NOI18N
@@ -65,7 +83,7 @@ public class PrincipalScreen extends javax.swing.JFrame {
             }
         });
         ScreenPrincipal.add(botonPower);
-        botonPower.setBounds(1300, 20, 49, 49);
+        botonPower.setBounds(1300, 10, 48, 48);
 
         botonNavigator.setFont(new java.awt.Font("Arial Narrow", 1, 18)); // NOI18N
         botonNavigator.setForeground(new java.awt.Color(255, 255, 255));
@@ -85,7 +103,7 @@ public class PrincipalScreen extends javax.swing.JFrame {
             }
         });
         ScreenPrincipal.add(botonNavigator);
-        botonNavigator.setBounds(51, 200, 97, 115);
+        botonNavigator.setBounds(50, 190, 170, 115);
 
         botonTerminal.setBackground(new java.awt.Color(255, 255, 255));
         botonTerminal.setFont(new java.awt.Font("Arial Narrow", 1, 18)); // NOI18N
@@ -106,7 +124,7 @@ public class PrincipalScreen extends javax.swing.JFrame {
             }
         });
         ScreenPrincipal.add(botonTerminal);
-        botonTerminal.setBounds(51, 66, 97, 115);
+        botonTerminal.setBounds(50, 40, 170, 115);
 
         notifyBar.setBackground(new java.awt.Color(255, 51, 51));
 
@@ -146,29 +164,9 @@ public class PrincipalScreen extends javax.swing.JFrame {
         );
 
         ScreenPrincipal.add(notifyBar);
-        notifyBar.setBounds(1140, 634, 220, 105);
+        notifyBar.setBounds(1140, 650, 220, 110);
 
-        botonCalculator.setFont(new java.awt.Font("Arial Narrow", 1, 18)); // NOI18N
-        botonCalculator.setForeground(new java.awt.Color(255, 255, 255));
-        botonCalculator.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/calculator.png"))); // NOI18N
-        botonCalculator.setText("Calculator");
-        botonCalculator.setBorder(null);
-        botonCalculator.setBorderPainted(false);
-        botonCalculator.setContentAreaFilled(false);
-        botonCalculator.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        botonCalculator.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        botonCalculator.setIconTextGap(-3);
-        botonCalculator.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        botonCalculator.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        botonCalculator.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonCalculatorActionPerformed(evt);
-            }
-        });
-        ScreenPrincipal.add(botonCalculator);
-        botonCalculator.setBounds(51, 345, 97, 115);
-
-        notifyBar1.setBackground(new java.awt.Color(255, 51, 51));
+        panelCores.setBackground(new java.awt.Color(255, 51, 51));
 
         scrollTablaProcesos.setBackground(new java.awt.Color(255, 51, 51));
         scrollTablaProcesos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 0)));
@@ -198,46 +196,288 @@ public class PrincipalScreen extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout notifyBar1Layout = new javax.swing.GroupLayout(notifyBar1);
-        notifyBar1.setLayout(notifyBar1Layout);
-        notifyBar1Layout.setHorizontalGroup(
-            notifyBar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(notifyBar1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(notifyBar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(scrollTablaProcesos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonVerCores, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+        botonOkCores.setBackground(new java.awt.Color(255, 51, 51));
+        botonOkCores.setFont(new java.awt.Font("URW Gothic L", 1, 14)); // NOI18N
+        botonOkCores.setForeground(new java.awt.Color(255, 255, 255));
+        botonOkCores.setText("Ok");
+        botonOkCores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonOkCoresActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panelCoresLayout = new javax.swing.GroupLayout(panelCores);
+        panelCores.setLayout(panelCoresLayout);
+        panelCoresLayout.setHorizontalGroup(
+            panelCoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelCoresLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelCoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(scrollTablaProcesos, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonVerCores, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonOkCores, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
-        notifyBar1Layout.setVerticalGroup(
-            notifyBar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(notifyBar1Layout.createSequentialGroup()
+        panelCoresLayout.setVerticalGroup(
+            panelCoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelCoresLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(scrollTablaProcesos, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(botonVerCores)
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(botonOkCores))
         );
 
-        ScreenPrincipal.add(notifyBar1);
-        notifyBar1.setBounds(1140, 427, 220, 189);
+        ScreenPrincipal.add(panelCores);
+        panelCores.setBounds(930, 430, 220, 198);
+
+        panelMemory.setBackground(new java.awt.Color(255, 51, 51));
+
+        tablaRam.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null}
+            },
+            new String [] {
+                "Pages"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(tablaRam);
+        if (tablaRam.getColumnModel().getColumnCount() > 0) {
+            tablaRam.getColumnModel().getColumn(0).setResizable(false);
+        }
+
+        tablaSwap.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null}
+            },
+            new String [] {
+                "Pages"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tablaSwap);
+        if (tablaSwap.getColumnModel().getColumnCount() > 0) {
+            tablaSwap.getColumnModel().getColumn(0).setResizable(false);
+        }
+
+        labelRAM.setBackground(new java.awt.Color(255, 255, 255));
+        labelRAM.setFont(new java.awt.Font("Century Schoolbook L", 1, 18)); // NOI18N
+        labelRAM.setText("RAM");
+
+        labelSWAP.setBackground(new java.awt.Color(255, 255, 255));
+        labelSWAP.setFont(new java.awt.Font("Century Schoolbook L", 1, 18)); // NOI18N
+        labelSWAP.setText("SWAP");
+
+        botonOkMem.setBackground(new java.awt.Color(255, 51, 51));
+        botonOkMem.setFont(new java.awt.Font("URW Gothic L", 1, 14)); // NOI18N
+        botonOkMem.setForeground(new java.awt.Color(255, 255, 255));
+        botonOkMem.setText("Ok");
+        botonOkMem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonOkMemActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panelMemoryLayout = new javax.swing.GroupLayout(panelMemory);
+        panelMemory.setLayout(panelMemoryLayout);
+        panelMemoryLayout.setHorizontalGroup(
+            panelMemoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelMemoryLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+            .addGroup(panelMemoryLayout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addComponent(labelRAM)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(labelSWAP)
+                .addGap(25, 25, 25))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelMemoryLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(botonOkMem, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        panelMemoryLayout.setVerticalGroup(
+            panelMemoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelMemoryLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelMemoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelRAM)
+                    .addComponent(labelSWAP))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panelMemoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(botonOkMem)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        ScreenPrincipal.add(panelMemory);
+        panelMemory.setBounds(930, 50, 220, 370);
+
+        botonCalculator.setFont(new java.awt.Font("Arial Narrow", 1, 18)); // NOI18N
+        botonCalculator.setForeground(new java.awt.Color(255, 255, 255));
+        botonCalculator.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/calculator.png"))); // NOI18N
+        botonCalculator.setText("Calculator");
+        botonCalculator.setBorder(null);
+        botonCalculator.setBorderPainted(false);
+        botonCalculator.setContentAreaFilled(false);
+        botonCalculator.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonCalculator.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        botonCalculator.setIconTextGap(-3);
+        botonCalculator.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        botonCalculator.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        botonCalculator.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonCalculatorActionPerformed(evt);
+            }
+        });
+        ScreenPrincipal.add(botonCalculator);
+        botonCalculator.setBounds(51, 345, 170, 115);
+
+        botonMemory.setBackground(new java.awt.Color(255, 255, 255));
+        botonMemory.setFont(new java.awt.Font("Arial Narrow", 1, 18)); // NOI18N
+        botonMemory.setForeground(new java.awt.Color(255, 255, 255));
+        botonMemory.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/memory.png"))); // NOI18N
+        botonMemory.setText("Memory");
+        botonMemory.setBorder(null);
+        botonMemory.setBorderPainted(false);
+        botonMemory.setContentAreaFilled(false);
+        botonMemory.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonMemory.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        botonMemory.setIconTextGap(-3);
+        botonMemory.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        botonMemory.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        botonMemory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonMemoryActionPerformed(evt);
+            }
+        });
+        ScreenPrincipal.add(botonMemory);
+        botonMemory.setBounds(1180, 160, 170, 115);
+
+        botonProcess.setBackground(new java.awt.Color(255, 255, 255));
+        botonProcess.setFont(new java.awt.Font("Arial Narrow", 1, 18)); // NOI18N
+        botonProcess.setForeground(new java.awt.Color(255, 255, 255));
+        botonProcess.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/proceso.png"))); // NOI18N
+        botonProcess.setText("Process");
+        botonProcess.setBorder(null);
+        botonProcess.setBorderPainted(false);
+        botonProcess.setContentAreaFilled(false);
+        botonProcess.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonProcess.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        botonProcess.setIconTextGap(-3);
+        botonProcess.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        botonProcess.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        botonProcess.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonProcessActionPerformed(evt);
+            }
+        });
+        ScreenPrincipal.add(botonProcess);
+        botonProcess.setBounds(1180, 480, 170, 115);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/wallpaper.png"))); // NOI18N
         jLabel1.setText("jLabel1");
         ScreenPrincipal.add(jLabel1);
-        jLabel1.setBounds(0, -100, 1380, 880);
+        jLabel1.setBounds(0, 0, 1380, 780);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(ScreenPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 1370, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(ScreenPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(ScreenPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 777, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(ScreenPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -254,9 +494,13 @@ public class PrincipalScreen extends javax.swing.JFrame {
         procesos++;
         String title = "Navigator " + Integer.toString(procesos);
         int core = adm.getProcesador();
-        process.add( new Browser( title, procesos, this, core) );
-        boxProcess.addItem( title );
-        añadirProcesoTabla(procesos, title, core);
+        if( admMem.allowProcessRam(procesos, title, 3) ){
+            process.add( new Browser( title, procesos, this, core) );
+            boxProcess.addItem( title );
+            añadirProcesoTabla(procesos, title, core);
+        }else{
+            System.out.println("no se puedo crear un navegador");
+        }
         
     }//GEN-LAST:event_botonNavigatorActionPerformed
 
@@ -265,9 +509,14 @@ public class PrincipalScreen extends javax.swing.JFrame {
         procesos++;
         String title = "Terminal " + Integer.toString(procesos);
         int core = adm.getProcesador();
-        process.add( new Terminal(this, title, procesos, core) );
-        boxProcess.addItem( title );
-        añadirProcesoTabla(procesos, title, core);
+        if( admMem.allowProcessRam(procesos, title, 1) ){
+            process.add( new Terminal(this, title, procesos, core) );
+            boxProcess.addItem( title );
+            añadirProcesoTabla(procesos, title, core);
+        }
+        else{
+            System.out.println("No se pudo crear una terminal");
+        }
     }//GEN-LAST:event_botonTerminalActionPerformed
 
     /*MAXIMIZA UN Jframe*/
@@ -280,7 +529,11 @@ public class PrincipalScreen extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_botonMaximizedActionPerformed
 
-    /*CREA UNA NUEVA CALCULADORA*/
+    /*ABRE UNA VISTA DE CORES*/
+    private void botonVerCoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVerCoresActionPerformed
+        Procesadores p = new Procesadores( adm );
+    }//GEN-LAST:event_botonVerCoresActionPerformed
+
     private void botonCalculatorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCalculatorActionPerformed
         procesos++;
         String title = "Calculadora " + Integer.toString(procesos);
@@ -290,10 +543,21 @@ public class PrincipalScreen extends javax.swing.JFrame {
         añadirProcesoTabla(procesos, title, core);
     }//GEN-LAST:event_botonCalculatorActionPerformed
 
-    /*ABRE UNA VISTA DE CORES*/
-    private void botonVerCoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVerCoresActionPerformed
-        Procesadores p = new Procesadores( adm );
-    }//GEN-LAST:event_botonVerCoresActionPerformed
+    private void botonOkMemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonOkMemActionPerformed
+        panelMemory.setVisible(false);
+    }//GEN-LAST:event_botonOkMemActionPerformed
+
+    private void botonMemoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonMemoryActionPerformed
+        panelMemory.setVisible(true);
+    }//GEN-LAST:event_botonMemoryActionPerformed
+
+    private void botonProcessActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonProcessActionPerformed
+        panelCores.setVisible(true);
+    }//GEN-LAST:event_botonProcessActionPerformed
+
+    private void botonOkCoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonOkCoresActionPerformed
+        panelCores.setVisible(false);
+    }//GEN-LAST:event_botonOkCoresActionPerformed
 
     /*REMUEVE UN PROCESO*/
     public void removeProcess(int process, JFrame exit, int core){
@@ -308,6 +572,7 @@ public class PrincipalScreen extends javax.swing.JFrame {
             System.out.println("Se eliminó");
         }
         adm.removerProceso( core );
+        admMem.removeProcessRam( process );
     }
     
     public boolean isOn(){
@@ -354,20 +619,32 @@ public class PrincipalScreen extends javax.swing.JFrame {
     private javax.swing.JPanel ScreenPrincipal;
     private javax.swing.JButton botonCalculator;
     private javax.swing.JButton botonMaximized;
+    private javax.swing.JButton botonMemory;
     private javax.swing.JButton botonNavigator;
+    private javax.swing.JButton botonOkCores;
+    private javax.swing.JButton botonOkMem;
     private javax.swing.JButton botonPower;
+    private javax.swing.JButton botonProcess;
     private javax.swing.JButton botonTerminal;
     private javax.swing.JButton botonVerCores;
     private javax.swing.JComboBox<String> boxProcess;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel labelRAM;
+    private javax.swing.JLabel labelSWAP;
     private javax.swing.JPanel notifyBar;
-    private javax.swing.JPanel notifyBar1;
+    private javax.swing.JPanel panelCores;
+    private javax.swing.JPanel panelMemory;
     private javax.swing.JScrollPane scrollTablaProcesos;
     private javax.swing.JTable tablaProcesos;
+    private javax.swing.JTable tablaRam;
+    private javax.swing.JTable tablaSwap;
     // End of variables declaration//GEN-END:variables
     private boolean on;
     private LinkedList <JFrame> process;
     private int procesos;
     private DefaultTableModel modeloProcesos;
     private AdministradorDeProcesos adm;
+    private AdministradorDeMemoria admMem;
 }

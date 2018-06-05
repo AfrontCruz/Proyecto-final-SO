@@ -17,6 +17,7 @@ public class Calculadora extends javax.swing.JFrame {
         this.idProceso = idProceso;
         setVisible(true);
         this.procesador = procesador;
+        this.setLocationRelativeTo(null);
     }
 
     @SuppressWarnings("unchecked")

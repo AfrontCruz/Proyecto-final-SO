@@ -12,7 +12,7 @@ import Vista.PrincipalScreen;
 
 public class SistemaOperativo {
     public static void main(String[] args) {
-        Inicio inicio = new Inicio();
-        //PrincipalScreen principal = new PrincipalScreen();
+        //Inicio inicio = new Inicio();
+        PrincipalScreen principal = new PrincipalScreen();
     }
 }

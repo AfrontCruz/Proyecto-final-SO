@@ -19,10 +19,11 @@ public class Terminal extends javax.swing.JFrame {
         this.setVisible(true);
         textTerminal.setText( title );
         textTerminal.setEditable(false);
-        modeloCommand = (DefaultTableModel) tablaCommand.getModel();
         this.principal = principal;
         this.idProcess = idProcess;
         this.procesador = procesador;
+        this.setLocationRelativeTo(null);
+        crearTablaCommand();
     }
 
     @SuppressWarnings("unchecked")
@@ -221,7 +222,9 @@ public class Terminal extends javax.swing.JFrame {
         char tecla = evt.getKeyChar();
         if( tecla == KeyEvent.VK_ENTER){
             ejecutarCommand( textCommand.getText() );
-            Object obj[] = {textCommand.getText()};
+            Object obj[] = { textCommand.getText() };
+            if( modeloCommand == null )
+                System.out.println("Aquio esta");
             modeloCommand.addRow(obj);
             textCommand.setText("");
         } 
@@ -241,12 +244,7 @@ public class Terminal extends javax.swing.JFrame {
     }//GEN-LAST:event_botonMinimizeActionPerformed
 
     private void botonClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonClearActionPerformed
-        int m = tablaCommand.getRowCount();
-        if( m > 0 ){
-            for(int i = 0; i < m; i++){
-                modeloCommand.removeRow(i);
-            }
-        }
+        crearTablaCommand();
         textOutput.setText("");
     }//GEN-LAST:event_botonClearActionPerformed
 
@@ -254,6 +252,12 @@ public class Terminal extends javax.swing.JFrame {
         Command comando = new Command( cmd );
         comando.analizadorCommand();
         textOutput.setText( comando.getOutput() );
+    }
+    
+    public void crearTablaCommand(){
+        modeloCommand = new DefaultTableModel();
+        modeloCommand.addColumn("Command");
+        tablaCommand.setModel( modeloCommand );
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
