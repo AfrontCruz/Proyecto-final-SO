@@ -36,9 +36,11 @@ public class Browser extends javax.swing.JFrame {
         botonFacebook = new javax.swing.JButton();
         botonGoogle = new javax.swing.JButton();
         botonYouTube = new javax.swing.JButton();
-        botonWikipedia = new javax.swing.JButton();
         botonMinimize = new javax.swing.JButton();
         botonExit = new javax.swing.JButton();
+        labelURL = new javax.swing.JLabel();
+        textUrl = new javax.swing.JTextField();
+        botonIr = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Browser");
@@ -57,7 +59,7 @@ public class Browser extends javax.swing.JFrame {
         );
         panelWebLayout.setVerticalGroup(
             panelWebLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 577, Short.MAX_VALUE)
+            .addGap(0, 585, Short.MAX_VALUE)
         );
 
         panelBarra.setBackground(new java.awt.Color(255, 255, 255));
@@ -65,7 +67,11 @@ public class Browser extends javax.swing.JFrame {
         botonFacebook.setBackground(new java.awt.Color(0, 0, 0));
         botonFacebook.setFont(new java.awt.Font("URW Gothic L", 1, 14)); // NOI18N
         botonFacebook.setForeground(new java.awt.Color(255, 255, 255));
-        botonFacebook.setText("Facebook");
+        botonFacebook.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/facebook.png"))); // NOI18N
+        botonFacebook.setBorder(null);
+        botonFacebook.setBorderPainted(false);
+        botonFacebook.setContentAreaFilled(false);
+        botonFacebook.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/facebookMax.png"))); // NOI18N
         botonFacebook.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonFacebookActionPerformed(evt);
@@ -75,7 +81,11 @@ public class Browser extends javax.swing.JFrame {
         botonGoogle.setBackground(new java.awt.Color(0, 0, 0));
         botonGoogle.setFont(new java.awt.Font("URW Gothic L", 1, 14)); // NOI18N
         botonGoogle.setForeground(new java.awt.Color(255, 255, 255));
-        botonGoogle.setText("Google");
+        botonGoogle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/google.png"))); // NOI18N
+        botonGoogle.setBorder(null);
+        botonGoogle.setBorderPainted(false);
+        botonGoogle.setContentAreaFilled(false);
+        botonGoogle.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/googleMax.png"))); // NOI18N
         botonGoogle.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonGoogleActionPerformed(evt);
@@ -85,20 +95,14 @@ public class Browser extends javax.swing.JFrame {
         botonYouTube.setBackground(new java.awt.Color(0, 0, 0));
         botonYouTube.setFont(new java.awt.Font("URW Gothic L", 1, 14)); // NOI18N
         botonYouTube.setForeground(new java.awt.Color(255, 255, 255));
-        botonYouTube.setText("YouTube");
+        botonYouTube.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/youtube.png"))); // NOI18N
+        botonYouTube.setBorder(null);
+        botonYouTube.setBorderPainted(false);
+        botonYouTube.setContentAreaFilled(false);
+        botonYouTube.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/youtubeMax.png"))); // NOI18N
         botonYouTube.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonYouTubeActionPerformed(evt);
-            }
-        });
-
-        botonWikipedia.setBackground(new java.awt.Color(0, 0, 0));
-        botonWikipedia.setFont(new java.awt.Font("URW Gothic L", 1, 14)); // NOI18N
-        botonWikipedia.setForeground(new java.awt.Color(255, 255, 255));
-        botonWikipedia.setText("Wikipedia");
-        botonWikipedia.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonWikipediaActionPerformed(evt);
             }
         });
 
@@ -108,6 +112,7 @@ public class Browser extends javax.swing.JFrame {
         botonMinimize.setContentAreaFilled(false);
         botonMinimize.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         botonMinimize.setIconTextGap(-3);
+        botonMinimize.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/minimizeMax.png"))); // NOI18N
         botonMinimize.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         botonMinimize.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         botonMinimize.addActionListener(new java.awt.event.ActionListener() {
@@ -122,11 +127,30 @@ public class Browser extends javax.swing.JFrame {
         botonExit.setContentAreaFilled(false);
         botonExit.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         botonExit.setIconTextGap(-3);
+        botonExit.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/exitMax.png"))); // NOI18N
         botonExit.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         botonExit.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         botonExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonExitActionPerformed(evt);
+            }
+        });
+
+        labelURL.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/url.png"))); // NOI18N
+
+        textUrl.setFont(new java.awt.Font("Century", 1, 14)); // NOI18N
+
+        botonIr.setBackground(new java.awt.Color(0, 0, 0));
+        botonIr.setFont(new java.awt.Font("URW Gothic L", 1, 14)); // NOI18N
+        botonIr.setForeground(new java.awt.Color(255, 255, 255));
+        botonIr.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/ir.png"))); // NOI18N
+        botonIr.setBorder(null);
+        botonIr.setBorderPainted(false);
+        botonIr.setContentAreaFilled(false);
+        botonIr.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/irMax.png"))); // NOI18N
+        botonIr.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonIrActionPerformed(evt);
             }
         });
 
@@ -141,8 +165,12 @@ public class Browser extends javax.swing.JFrame {
                 .addComponent(botonGoogle)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(botonYouTube)
+                .addGap(18, 18, 18)
+                .addComponent(labelURL)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(botonWikipedia)
+                .addComponent(textUrl, javax.swing.GroupLayout.PREFERRED_SIZE, 696, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(botonIr)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(botonMinimize)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -154,13 +182,16 @@ public class Browser extends javax.swing.JFrame {
             .addGroup(panelBarraLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelBarraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(botonMinimize)
+                    .addComponent(botonYouTube)
                     .addGroup(panelBarraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(botonFacebook)
-                        .addComponent(botonGoogle)
-                        .addComponent(botonYouTube)
-                        .addComponent(botonWikipedia))
-                    .addComponent(botonMinimize)
-                    .addComponent(botonExit))
+                        .addComponent(botonGoogle))
+                    .addComponent(botonExit)
+                    .addComponent(labelURL)
+                    .addGroup(panelBarraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(textUrl, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(botonIr, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -203,11 +234,6 @@ public class Browser extends javax.swing.JFrame {
         browser.loadURL( url );
     }//GEN-LAST:event_botonYouTubeActionPerformed
 
-    private void botonWikipediaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonWikipediaActionPerformed
-        url = "http://www.wikipedia.com";
-        browser.loadURL( url );
-    }//GEN-LAST:event_botonWikipediaActionPerformed
-
     private void botonMinimizeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonMinimizeActionPerformed
         this.setVisible(false);
     }//GEN-LAST:event_botonMinimizeActionPerformed
@@ -224,6 +250,12 @@ public class Browser extends javax.swing.JFrame {
         this.removeNotify();
     }//GEN-LAST:event_botonExitActionPerformed
 
+    private void botonIrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonIrActionPerformed
+        url = textUrl.getText();
+        browser.loadURL( url );
+        textUrl.setText("");
+    }//GEN-LAST:event_botonIrActionPerformed
+
     public int getIdProceso() {
         return idProceso;
     }
@@ -232,10 +264,12 @@ public class Browser extends javax.swing.JFrame {
     private javax.swing.JButton botonExit;
     private javax.swing.JButton botonFacebook;
     private javax.swing.JButton botonGoogle;
+    private javax.swing.JButton botonIr;
     private javax.swing.JButton botonMinimize;
-    private javax.swing.JButton botonWikipedia;
     private javax.swing.JButton botonYouTube;
+    private javax.swing.JLabel labelURL;
     private javax.swing.JPanel panelBarra;
     private javax.swing.JPanel panelWeb;
+    private javax.swing.JTextField textUrl;
     // End of variables declaration//GEN-END:variables
 }

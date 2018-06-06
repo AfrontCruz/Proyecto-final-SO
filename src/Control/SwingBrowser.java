@@ -49,5 +49,4 @@ public class SwingBrowser extends JFXPanel {
             return null;
         }
     }
-    
 }

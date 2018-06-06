@@ -55,6 +55,7 @@ public class Terminal extends javax.swing.JFrame {
         botonExit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botonExit.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         botonExit.setIconTextGap(-3);
+        botonExit.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/exitMax.png"))); // NOI18N
         botonExit.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         botonExit.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         botonExit.addActionListener(new java.awt.event.ActionListener() {
@@ -63,7 +64,6 @@ public class Terminal extends javax.swing.JFrame {
             }
         });
 
-        tablaCommand.setBackground(new java.awt.Color(255, 255, 255));
         tablaCommand.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         tablaCommand.setFont(new java.awt.Font("URW Gothic L", 0, 12)); // NOI18N
         tablaCommand.setForeground(new java.awt.Color(0, 51, 51));
@@ -91,7 +91,6 @@ public class Terminal extends javax.swing.JFrame {
             tablaCommand.getColumnModel().getColumn(0).setMaxWidth(400);
         }
 
-        textCommand.setBackground(new java.awt.Color(255, 255, 255));
         textCommand.setFont(new java.awt.Font("URW Gothic L", 0, 18)); // NOI18N
         textCommand.setBorder(null);
         textCommand.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -125,6 +124,7 @@ public class Terminal extends javax.swing.JFrame {
         botonMinimize.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botonMinimize.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         botonMinimize.setIconTextGap(-3);
+        botonMinimize.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/minimizeMax.png"))); // NOI18N
         botonMinimize.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         botonMinimize.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         botonMinimize.addActionListener(new java.awt.event.ActionListener() {
@@ -133,7 +133,6 @@ public class Terminal extends javax.swing.JFrame {
             }
         });
 
-        textTerminal.setBackground(new java.awt.Color(255, 255, 255));
         textTerminal.setFont(new java.awt.Font("URW Gothic L", 1, 18)); // NOI18N
         textTerminal.setBorder(null);
 

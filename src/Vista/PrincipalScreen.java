@@ -76,13 +76,16 @@ public class PrincipalScreen extends javax.swing.JFrame {
         ScreenPrincipal.setBackground(new java.awt.Color(0, 51, 102));
         ScreenPrincipal.setLayout(null);
 
+        botonPower.setForeground(new java.awt.Color(255, 255, 255));
         botonPower.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/shutdown.png"))); // NOI18N
+        botonPower.setText("Power Off");
         botonPower.setBorder(null);
         botonPower.setBorderPainted(false);
         botonPower.setContentAreaFilled(false);
         botonPower.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botonPower.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         botonPower.setIconTextGap(-3);
+        botonPower.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/shutdownMax.png"))); // NOI18N
         botonPower.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         botonPower.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         botonPower.addActionListener(new java.awt.event.ActionListener() {
@@ -91,7 +94,7 @@ public class PrincipalScreen extends javax.swing.JFrame {
             }
         });
         ScreenPrincipal.add(botonPower);
-        botonPower.setBounds(1300, 10, 48, 48);
+        botonPower.setBounds(1280, 10, 70, 70);
 
         botonNavigator.setFont(new java.awt.Font("Arial Narrow", 1, 18)); // NOI18N
         botonNavigator.setForeground(new java.awt.Color(255, 255, 255));
@@ -103,6 +106,7 @@ public class PrincipalScreen extends javax.swing.JFrame {
         botonNavigator.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botonNavigator.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         botonNavigator.setIconTextGap(-3);
+        botonNavigator.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/navigatorMax.png"))); // NOI18N
         botonNavigator.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         botonNavigator.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         botonNavigator.addActionListener(new java.awt.event.ActionListener() {
@@ -124,6 +128,7 @@ public class PrincipalScreen extends javax.swing.JFrame {
         botonTerminal.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botonTerminal.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         botonTerminal.setIconTextGap(-3);
+        botonTerminal.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/terminalMax.png"))); // NOI18N
         botonTerminal.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         botonTerminal.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         botonTerminal.addActionListener(new java.awt.event.ActionListener() {
@@ -172,7 +177,7 @@ public class PrincipalScreen extends javax.swing.JFrame {
         );
 
         ScreenPrincipal.add(notifyBar);
-        notifyBar.setBounds(1140, 650, 220, 110);
+        notifyBar.setBounds(1140, 650, 220, 105);
 
         panelCores.setBackground(new java.awt.Color(255, 51, 51));
 
@@ -224,7 +229,7 @@ public class PrincipalScreen extends javax.swing.JFrame {
                     .addComponent(scrollTablaProcesos, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botonVerCores, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botonOkCores, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelCoresLayout.setVerticalGroup(
             panelCoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -238,7 +243,7 @@ public class PrincipalScreen extends javax.swing.JFrame {
         );
 
         ScreenPrincipal.add(panelCores);
-        panelCores.setBounds(930, 430, 220, 198);
+        panelCores.setBounds(930, 430, 220, 195);
 
         panelMemory.setBackground(new java.awt.Color(255, 51, 51));
 
@@ -410,7 +415,7 @@ public class PrincipalScreen extends javax.swing.JFrame {
         );
 
         ScreenPrincipal.add(panelMemory);
-        panelMemory.setBounds(930, 50, 220, 370);
+        panelMemory.setBounds(930, 50, 228, 370);
 
         botonMemory.setBackground(new java.awt.Color(255, 255, 255));
         botonMemory.setFont(new java.awt.Font("Arial Narrow", 1, 18)); // NOI18N
@@ -423,6 +428,7 @@ public class PrincipalScreen extends javax.swing.JFrame {
         botonMemory.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botonMemory.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         botonMemory.setIconTextGap(-3);
+        botonMemory.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/memoryMax.png"))); // NOI18N
         botonMemory.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         botonMemory.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         botonMemory.addActionListener(new java.awt.event.ActionListener() {
@@ -444,6 +450,7 @@ public class PrincipalScreen extends javax.swing.JFrame {
         botonProcess.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botonProcess.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         botonProcess.setIconTextGap(-3);
+        botonProcess.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/procesoMax.png"))); // NOI18N
         botonProcess.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         botonProcess.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         botonProcess.addActionListener(new java.awt.event.ActionListener() {
@@ -538,12 +545,10 @@ public class PrincipalScreen extends javax.swing.JFrame {
 
         labelRamExtend.setBackground(new java.awt.Color(0, 0, 0));
         labelRamExtend.setFont(new java.awt.Font("Century Schoolbook L", 1, 18)); // NOI18N
-        labelRamExtend.setForeground(new java.awt.Color(0, 0, 0));
         labelRamExtend.setText("RAM");
 
         labelSwapExtend.setBackground(new java.awt.Color(0, 0, 0));
         labelSwapExtend.setFont(new java.awt.Font("Century Schoolbook L", 1, 18)); // NOI18N
-        labelSwapExtend.setForeground(new java.awt.Color(0, 0, 0));
         labelSwapExtend.setText("SWAP");
 
         javax.swing.GroupLayout panelMemoryExtendLayout = new javax.swing.GroupLayout(panelMemoryExtend);
@@ -574,7 +579,7 @@ public class PrincipalScreen extends javax.swing.JFrame {
                 .addGroup(panelMemoryExtendLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(10, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         ScreenPrincipal.add(panelMemoryExtend);
@@ -645,10 +650,6 @@ public class PrincipalScreen extends javax.swing.JFrame {
                     if( admMem.isProcessSwap( ter.getIdProcess() ) ){
                         admMem.moveSwapToRam( ter.getIdProcess() );
                         System.out.println("ESTOY MOVIENDO SWAPTORAM");
-                        t.setVisible(true);
-                    }
-                    else{
-                        System.out.println("Hubo un error inesperado");
                     }
                 }
                 if( t instanceof Browser ){
@@ -656,11 +657,9 @@ public class PrincipalScreen extends javax.swing.JFrame {
                     if( admMem.isProcessSwap( br.getIdProceso() ) ){
                         admMem.moveSwapToRam( br.getIdProceso() );
                         System.out.println("ESTOY MOVIENDO SWAPTORAM");
-                        t.setVisible(true);
-                    }else{
-                        System.out.println("Hubo un error inesperado");
                     }
                 }
+                t.setVisible(true);
                 
                 cargarTablasMem();
                 break;
