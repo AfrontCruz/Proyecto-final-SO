@@ -224,6 +224,9 @@ public class Browser extends javax.swing.JFrame {
         this.removeNotify();
     }//GEN-LAST:event_botonExitActionPerformed
 
+    public int getIdProceso() {
+        return idProceso;
+    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonExit;

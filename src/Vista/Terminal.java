@@ -259,6 +259,12 @@ public class Terminal extends javax.swing.JFrame {
         modeloCommand.addColumn("Command");
         tablaCommand.setModel( modeloCommand );
     }
+
+    public int getIdProcess() {
+        return idProcess;
+    }
+    
+    
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonClear;

@@ -15,6 +15,7 @@ public class Procesadores extends javax.swing.JFrame {
         setVisible(true);
         //this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         cargarTablaProceso();
+        this.setLocationRelativeTo(null);
     }
     
     public void cargarTablaProceso(){
