@@ -1,6 +1,7 @@
 package Vista;
 
 import Control.SwingBrowser;
+import java.awt.event.KeyEvent;
 import static java.lang.Thread.sleep;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -139,6 +140,11 @@ public class Browser extends javax.swing.JFrame {
         labelURL.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/url.png"))); // NOI18N
 
         textUrl.setFont(new java.awt.Font("Century", 1, 14)); // NOI18N
+        textUrl.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                textUrlKeyTyped(evt);
+            }
+        });
 
         botonIr.setBackground(new java.awt.Color(0, 0, 0));
         botonIr.setFont(new java.awt.Font("URW Gothic L", 1, 14)); // NOI18N
@@ -255,6 +261,12 @@ public class Browser extends javax.swing.JFrame {
         browser.loadURL( url );
         textUrl.setText("");
     }//GEN-LAST:event_botonIrActionPerformed
+
+    private void textUrlKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textUrlKeyTyped
+        char tecla = evt.getKeyChar();
+        if( tecla == KeyEvent.VK_ENTER)
+           botonIr.doClick();
+    }//GEN-LAST:event_textUrlKeyTyped
 
     public int getIdProceso() {
         return idProceso;
